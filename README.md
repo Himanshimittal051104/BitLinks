@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+BitLinks — short links, big ease
 
-## Getting Started
+Hey there! 👋
+This is BitLinks, the little URL shortener I whipped up with Next.js. Click it. Shorten it. Track it. Share it. It’s clean, lightweight, and perfect if you're tired of huge unwieldy URLs.
 
-First, run the development server:
+What’s inside?
 
-```bash
+Shorten URLs and get bite-sized links.
+
+Automatic redirects using Next.js middleware (fast and snappy).
+
+Simple stats—like click count. (You can build more later!)
+
+Custom slugs—make your URL /promo or /go.
+
+Built with Next.js, Tailwind CSS, and MongoDB, so it’s easy to tweak.
+
+Project structure
+bitlinks/
+├── app/                # Next.js app/router (pages + APIs)
+├── components/         # UI building blocks
+├── lib/                # Helpers, DB connection, middleware
+├── public/             # Static files (icons, etc.)
+├── README.md           # (that’s this file—hi!)
+├── next.config.mjs
+├── tailwind.config.js
+├── package.json
+└── ...other config files
+
+How to run it locally
+
+Clone the repo (already set to your project):
+
+git clone https://github.com/Himanshimittal051104/BitLinks.git
+cd BitLinks
+
+
+Install everything:
+
+npm install
+
+
+Create a .env.local file at the project root:
+
+MONGODB_URL=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000        # if you add auth later
+NEXTAUTH_SECRET=supersecret               # optional
+APP_URL=http://localhost:3000
+
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Then head to http://localhost:3000 in your browser to check it out. 🎉
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Quick API test
 
-## Learn More
+Want to test link creation via curl? Here’s how:
 
-To learn more about Next.js, take a look at the following resources:
+curl -X POST http://localhost:3000/api/links \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://some-long-site.com/page","slug":"go"}'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You’ll get back something like:
 
-## Deploy on Vercel
+{ "shortUrl": "http://localhost:3000/go" }
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Visit that URL to see the redirect. Boom, short link magic.
+
+Screenshots (Coming soon)
+
+Home page with input box and shortened URL result.
+
+Dashboard or API results page (if you add stats).
+
+QR code modal or link detail view (future touch).
+
+Why this project exists
+
+I wanted a shortener that’s self-hosted, lightweight, and easy to modify. Also, it’s a playground for Next.js middleware and edge routing. No shady tracking, no ads—just straight-up functionality.
+
+Want to help?
+
+Bug fixes
+
+Little features like QR codes or analytics
+
+Styling improvements or themes
+
+Anything else you think fits—PRs are welcome!
+
+License
+
+MIT — do whatever you want with it. Just don’t sue me if it breaks. 😉
